@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghaith Assistance - Ambulance Privée Agadir</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <script src="script1.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-ambu-light text-slate-800 antialiased overflow-x-hidden font-fr">
+
+    <div id="preloader" class="loader-container">
+        <div class="text-center">
+            <i class="fa-solid fa-heart-pulse text-5xl text-ambu-red animate-pulse mb-4"></i>
+            <h2 class="text-2xl font-bold tracking-widest text-ambu-blue" data-key="loading">CHARGEMENT...</h2>
+        </div>
+    </div>
+
+    <div id="serviceModal" class="fixed inset-0 z-[100] hidden items-center justify-center modal-overlay p-4" onclick="closeModal(event)">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full relative overflow-hidden modal-content" onclick="event.stopPropagation()">
+            <div id="modalHeader" class="bg-ambu-blue p-6 text-white flex justify-between items-start">
+                <div class="flex items-center gap-4">
+                    <div id="modalIconContainer" class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-2xl"></div>
+                    <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+                </div>
+                <button onclick="closeModal()" class="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8 flex items-center justify-center transition">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-8">
+                <p id="modalDesc" class="text-gray-600 text-lg leading-relaxed mb-6"></p>
+                <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-ambu-red">
+                    <h4 class="font-bold text-ambu-blue mb-2 text-sm uppercase tracking-wide" data-key="modalWhy">Pourquoi nous choisir ?</h4>
+                    <p id="modalDetail" class="text-gray-700 text-sm"></p>
+                </div>
+                <div class="mt-8 flex justify-end">
+                    <a href="tel:+212664843120" class="bg-ambu-red text-white px-6 py-2 rounded-lg font-bold hover:bg-red-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-phone"></i> <span data-key="modalCall">Appeler pour ce service</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="bg-white p-2 rounded-lg shadow-md group-hover:scale-110 transition duration-300">
+                        <i class="fa-solid fa-truck-medical text-2xl text-ambu-red"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-2xl leading-none text-white transition-colors duration-300" id="nav-text-1" data-key="brandName">GHAITH</span>
+                        <span class="font-bold text-sm tracking-[0.2em] text-ambu-red leading-none" data-key="brandSub">ASSISTANCE</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#accueil" class="text-white hover:text-ambu-red font-medium transition duration-300 nav-link" data-key="navHome">Accueil</a>
+                    <a href="#services" class="text-white hover:text-ambu-red font-medium transition duration-300 nav-link" data-key="navServices">Services</a>
+                    <a href="#gallery" class="text-white hover:text-ambu-red font-medium transition duration-300 nav-link" data-key="navGallery">Galerie</a>
+                    <a href="#contact" class="text-white hover:text-ambu-red font-medium transition duration-300 nav-link" data-key="navContact">Contact</a>
+                    
+                    <button onclick="toggleLanguage()" class="group flex items-center gap-2 bg-white/20 hover:bg-white/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 text-white transition">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="font-bold text-sm" id="lang-btn-text">العربية</span>
+                    </button>
+
+                    <a href="tel:+212664843120" class="btn-shine bg-ambu-red hover:bg-red-600 text-white px-6 py-2.5 rounded-full font-bold shadow-glow transition transform hover:-translate-y-1 flex items-center gap-2">
+                        <i class="fa-solid fa-phone phone-icon-anim"></i> <span data-key="navUrgence">URGENCE</span>
+                    </a>
+                </div>
+
+                <button id="mobile-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl py-4 flex-col items-center space-y-4 md:hidden border-t border-gray-100">
+            <a href="#accueil" class="text-slate-800 font-bold hover:text-ambu-red" data-key="navHome">Accueil</a>
+            <a href="#services" class="text-slate-800 font-bold hover:text-ambu-red" data-key="navServices">Services</a>
+            <a href="#gallery" class="text-slate-800 font-bold hover:text-ambu-red" data-key="navGallery">Galerie</a>
+            <a href="#contact" class="text-slate-800 font-bold hover:text-ambu-red" data-key="navContact">Contact</a>
+            <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-gray-100 px-6 py-2 rounded-full text-slate-800 font-bold">
+                <i class="fa-solid fa-globe text-ambu-red"></i>
+                <span id="mobile-lang-btn-text">العربية</span>
+            </button>
+            <a href="tel:+212664843120" class="text-ambu-red font-extrabold text-xl" data-key="mobileCall">APPELER 24/7</a>
+        </div>
+    </nav>
+
+    <header id="accueil" class="relative h-screen flex items-center justify-center overflow-hidden hero-bg">
+        <div class="hero-overlay"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
+            <div class="reveal active delay-100 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white mb-6">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-sm font-semibold tracking-wide" data-key="heroBadge">DISPONIBLE MAINTENANT • 24H/24</span>
+            </div>
+            
+            <h1 class="reveal active delay-200 text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
+                <span data-key="heroTitle1">Rapidité. Soin.</span> <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-ambu-red to-orange-500" data-key="heroTitle2">Confiance Totale.</span>
+            </h1>
+            
+            <p class="reveal active delay-300 text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto" data-key="heroDesc">
+                Ghaith Assistance vous accompagne dans tous vos transports sanitaires à Agadir et ses environs avec professionnalisme.
+            </p>
+            
+            <div class="reveal active delay-500 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:+212664843120" class="btn-shine bg-ambu-red text-white text-lg font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-glow transition-all transform hover:scale-105 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-phone-volume text-xl"></i> <span dir="ltr">06 64 84 31 20</span>
+                </a>
+                <a href="#services" class="btn-shine bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white hover:text-ambu-blue text-lg font-bold px-8 py-4 rounded-xl transition-all flex items-center justify-center">
+                    <span data-key="btnServices">Nos Services</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
+            <svg class="relative block w-[calc(100%+1.3px)] h-[60px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-ambu-light"></path>
+            </svg>
+        </div>
+    </header>
+
+    <section id="services" class="py-24 bg-ambu-light">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <span class="text-ambu-red font-bold uppercase tracking-wider text-sm" data-key="servSub">Ce que nous faisons</span>
+                <h2 class="text-4xl font-extrabold text-ambu-blue mt-2" data-key="servTitle">Nos Services Médicaux</h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-ambu-red to-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div onclick="openModal('s1')" class="cursor-pointer reveal group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300">
+                    <div class="p-8 relative h-full border-t-4 border-ambu-red">
+                        <div class="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-ambu-red transition duration-500">
+                            <i class="fa-solid fa-truck-medical text-ambu-red text-2xl group-hover:text-white transition duration-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-ambu-blue mb-3" data-key="s1Title">Transport des patients urgents</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4" data-key="s1Desc">Transporter les patients de leur domicile vers les hôpitaux ou inversement, avec un personnel médical qualifié.</p>
+                        <div class="text-ambu-red font-bold text-sm flex items-center gap-2 mt-auto group-hover:translate-x-2 transition">
+                            <span data-key="readMore">En savoir plus</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="openModal('s2')" class="cursor-pointer reveal group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300">
+                    <div class="p-8 relative h-full border-t-4 border-blue-600">
+                        <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition duration-500">
+                            <i class="fa-solid fa-wheelchair text-blue-600 text-2xl group-hover:text-white transition duration-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-ambu-blue mb-3" data-key="s2Title">Transport des patients non urgents</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4" data-key="s2Desc">Fournir des services de transport pour des patients stables, comme les emmener à des rendez-vous médicaux ou des traitements.</p>
+                        <div class="text-blue-600 font-bold text-sm flex items-center gap-2 mt-auto group-hover:translate-x-2 transition">
+                            <span data-key="readMore">En savoir plus</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="openModal('s3')" class="cursor-pointer reveal group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300">
+                    <div class="p-8 relative h-full border-t-4 border-slate-800">
+                        <div class="w-16 h-16 bg-slate-200 rounded-xl flex items-center justify-center mb-6 group-hover:bg-slate-800 transition duration-500">
+                            <i class="fa-solid fa-calendar-check text-slate-800 text-2xl group-hover:text-white transition duration-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-ambu-blue mb-3" data-key="s3Title">Services d'ambulance lors d'événements</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4" data-key="s3Desc">Mettre à disposition un personnel d’ambulance médicale pour les grandes manifestations et événements.</p>
+                        <div class="text-slate-800 font-bold text-sm flex items-center gap-2 mt-auto group-hover:translate-x-2 transition">
+                            <span data-key="readMore">En savoir plus</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="openModal('s4')" class="cursor-pointer reveal group bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300">
+                    <div class="p-8 relative h-full border-t-4 border-green-600">
+                        <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-600 transition duration-500">
+                            <i class="fa-solid fa-user-nurse text-green-600 text-2xl group-hover:text-white transition duration-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-ambu-blue mb-3" data-key="s4Title">Transport médical spécialisé</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4" data-key="s4Desc">Transporter les patients nécessitant des soins particuliers, comme les cas critiques ou les patients à besoins spécifiques.</p>
+                        <div class="text-green-600 font-bold text-sm flex items-center gap-2 mt-auto group-hover:translate-x-2 transition">
+                            <span data-key="readMore">En savoir plus</span> <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <span class="text-ambu-red font-bold uppercase tracking-wider text-sm" data-key="gallerySub">Notre Matériel</span>
+                <h2 class="text-4xl font-extrabold text-ambu-blue mt-2" data-key="galleryTitle">Notre Flotte & Équipement</h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-ambu-red to-blue-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-auto md:h-[500px]">
+                
+                <div class="reveal group relative overflow-hidden rounded-2xl shadow-xl h-64 md:h-full cursor-pointer">
+                    <img src="ghaith1.png" alt="Ambulance Exterior" class="w-full h-full object-cover transition transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-8">
+                        <h3 class="text-white text-2xl font-bold translate-y-4 group-hover:translate-y-0 transition duration-500">Ambulances Modernes</h3>
+                        <p class="text-gray-300 text-sm translate-y-4 group-hover:translate-y-0 transition duration-500 delay-75" data-key="galImg1">Véhicules neufs et entretenus pour votre sécurité.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6 h-full">
+                    
+                    <div class="reveal group relative overflow-hidden rounded-2xl shadow-xl h-64 md:h-1/2 cursor-pointer delay-100">
+                        <img src="ghaith2.png" alt="Equipe en action" class="w-full h-full object-cover transition transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-6">
+                            <h3 class="text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition duration-500">Équipe Qualifiée</h3>
+                            <p class="text-gray-300 text-sm translate-y-4 group-hover:translate-y-0 transition duration-500 delay-75" data-key="galImg2">Intervention professionnelle et humaine.</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal group relative overflow-hidden rounded-2xl shadow-xl h-64 md:h-1/2 cursor-pointer delay-200">
+                        <img src="ghaith3.png" alt="Interieur equipé" class="w-full h-full object-cover transition transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500 flex flex-col justify-end p-6">
+                            <h3 class="text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition duration-500">Équipement de Pointe</h3>
+                            <p class="text-gray-300 text-sm translate-y-4 group-hover:translate-y-0 transition duration-500 delay-75" data-key="galImg3">Matériel de réanimation complet à bord.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <span class="text-ambu-red font-bold uppercase tracking-wider text-sm" data-key="reviewSub">Témoignages</span>
+                <h2 class="text-4xl font-extrabold text-ambu-blue mt-2" data-key="reviewTitle">Ce que disent nos clients</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition border border-gray-100">
+                    <div class="text-yellow-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 italic mb-6" data-key="rev1Text">"Service incroyable. L'équipe est arrivée en moins de 15 minutes. Très professionnels et rassurants."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-ambu-red rounded-full flex items-center justify-center text-white font-bold">A</div>
+                        <div><h4 class="font-bold text-ambu-blue">Ahmed T.</h4><p class="text-xs text-gray-500">Agadir</p></div>
+                    </div>
+                </div>
+                <div class="reveal bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition border border-gray-100">
+                    <div class="text-yellow-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 italic mb-6" data-key="rev2Text">"Merci pour votre gentillesse lors du transport de ma mère pour sa dialyse."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">S</div>
+                        <div><h4 class="font-bold text-ambu-blue">Sarah L.</h4><p class="text-xs text-gray-500">Tilila</p></div>
+                    </div>
+                </div>
+                <div class="reveal bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition border border-gray-100">
+                    <div class="text-yellow-400 text-sm mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-gray-600 italic mb-6" data-key="rev3Text">"Une ambulance propre et bien équipée. Je recommande vivement pour leur sérieux."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-white font-bold">K</div>
+                        <div><h4 class="font-bold text-ambu-blue">Karim B.</h4><p class="text-xs text-gray-500">Dakhla</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-ambu-light relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="bg-ambu-blue p-10 text-white flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold mb-4" data-key="contactBoxTitle">Contactez-nous</h3>
+                        <p class="text-blue-200 mb-8" data-key="contactBoxDesc">Envoyez-nous un message pour un devis ou une information. Pour les urgences, appelez directement.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-ambu-red"></i> <span dir="ltr">+212 6 64 84 31 20</span></div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-ambu-red"></i> Ghaithassist@gmail.com</div>
+                            <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-ambu-red"></i> <span data-key="location">Tilila - Agadir</span></div>
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <form onsubmit="event.preventDefault(); alert('Message envoyé !');">
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold text-gray-700 mb-1" data-key="formName">Nom Complet</label>
+                                <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-ambu-red transition">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold text-gray-700 mb-1" data-key="formPhone">Téléphone</label>
+                                <input type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-ambu-red transition">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-bold text-gray-700 mb-1" data-key="formMsg">Message</label>
+                                <textarea rows="3" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-ambu-red transition"></textarea>
+                            </div>
+                            <button class="w-full bg-ambu-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-lg" data-key="formBtn">Envoyer le message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="reveal">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-truck-medical text-2xl text-ambu-red"></i>
+                    <span class="font-bold text-xl text-white" data-key="brandName">GHAITH</span>
+                    <span class="font-bold text-xl text-ambu-red" data-key="brandSub">ASSISTANCE</span>
+                </div>
+                <p class="text-sm" data-key="footerDesc">Votre partenaire santé de confiance. Disponible 7j/7 pour assurer votre sécurité.</p>
+            </div>
+            <div class="reveal text-center md:text-start">
+                <h4 class="text-white font-bold mb-4" data-key="linksTitle">Liens Rapides</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-ambu-red transition" data-key="navHome">Accueil</a></li>
+                    <li><a href="#services" class="hover:text-ambu-red transition" data-key="navServices">Services</a></li>
+                    <li><a href="#gallery" class="hover:text-ambu-red transition" data-key="navGallery">Galerie</a></li>
+                </ul>
+            </div>
+            <div class="reveal text-center md:text-end">
+                <h4 class="text-white font-bold mb-4" data-key="contactTitle">Contact</h4>
+                <p class="text-sm mb-2"><i class="fa-solid fa-phone mx-2 text-ambu-red"></i> <span dir="ltr">+212 6 64 84 31 20</span></p>
+                <p class="text-sm"><i class="fa-solid fa-map-marker-alt mx-2 text-ambu-red"></i> <span data-key="location">Tilila - Agadir</span></p>
+            </div>
+        </div>
+        <div class="text-center mt-12 pt-8 border-t border-slate-900 text-xs">
+            &copy; 2026 Ghaith Assistance. <span data-key="copyright">Design Premium.</span>
+        </div>
+    </footer>
+
+    <script src="script2.js"></script>
+</body>
+</html>
