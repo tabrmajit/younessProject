@@ -169,29 +169,24 @@ function openModal(serviceId) {
     const data = serviceDetails[currentLang][serviceId];
 
     if (data) {
-        // Populate Modal
         document.getElementById('modalTitle').innerText = data.title;
         document.getElementById('modalDesc').innerText = data.desc;
         document.getElementById('modalDetail').innerText = data.detail;
 
-        // Icon Logic
         const iconContainer = document.getElementById('modalIconContainer');
         iconContainer.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
 
-        // Show Modal
         modal.classList.remove('hidden');
         modal.classList.add('flex');
     }
 }
 
 function closeModal(event) {
-    // Close if clicked on overlay or close button (not content)
     const modal = document.getElementById('serviceModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
 }
 
-// --- LANGUAGE & GENERAL FUNCTIONS ---
 function toggleLanguage() {
     currentLang = currentLang === 'fr' ? 'ar' : 'fr';
     updateContent();

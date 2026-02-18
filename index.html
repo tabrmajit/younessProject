@@ -270,18 +270,35 @@
     </section>
 
     <section id="contact" class="py-20 bg-ambu-light relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden reveal">
                 <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="bg-ambu-blue p-10 text-white flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold mb-4" data-key="contactBoxTitle">Contactez-nous</h3>
-                        <p class="text-blue-200 mb-8" data-key="contactBoxDesc">Envoyez-nous un message pour un devis ou une information. Pour les urgences, appelez directement.</p>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-ambu-red"></i> <span dir="ltr">+212 6 64 84 31 20</span></div>
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-ambu-red"></i> Ghaithassist@gmail.com</div>
-                            <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-ambu-red"></i> <span data-key="location">Tilila - Agadir</span></div>
+                    
+                    <div class="bg-ambu-blue text-white flex flex-col">
+                        <div class="p-10 pb-6">
+                            <h3 class="text-2xl font-bold mb-4" data-key="contactBoxTitle">Contactez-nous</h3>
+                            <p class="text-blue-200 mb-6" data-key="contactBoxDesc">Envoyez-nous un message pour un devis ou une information. Pour les urgences, appelez directement.</p>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-phone text-ambu-red"></i> <span dir="ltr">+212 6 64 84 31 20</span></div>
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-envelope text-ambu-red"></i> Ghaithassist@gmail.com</div>
+                                <div class="flex items-center gap-3"><i class="fa-solid fa-location-dot text-ambu-red"></i> <span data-key="location">Tilila - Agadir</span></div>
+                            </div>
                         </div>
+
+                        <div class="w-full h-64 md:h-full bg-gray-300 relative">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3441.056686364654!2d-9.5534886!3d30.4063226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3b6f000000001%3A0x0!2sTilila%2C%20Agadir!5e0!3m2!1sfr!2sma!4v1698765432100!5m2!1sfr!2sma" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                class="absolute inset-0 grayscale hover:grayscale-0 transition duration-500">
+                            </iframe>
+                            </div>
                     </div>
+
                     <div class="p-10">
                         <form onsubmit="event.preventDefault(); alert('Message envoyé !');">
                             <div class="mb-4">
@@ -294,11 +311,14 @@
                             </div>
                             <div class="mb-6">
                                 <label class="block text-sm font-bold text-gray-700 mb-1" data-key="formMsg">Message</label>
-                                <textarea rows="3" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-ambu-red transition"></textarea>
+                                <textarea rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-ambu-red transition"></textarea>
                             </div>
-                            <button class="w-full bg-ambu-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-lg" data-key="formBtn">Envoyer le message</button>
+                            <button class="w-full bg-ambu-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-lg flex justify-center items-center gap-2" data-key="formBtn">
+                                Envoyer le message <i class="fa-solid fa-paper-plane"></i>
+                            </button>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
